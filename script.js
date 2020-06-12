@@ -33,10 +33,7 @@ window.addEventListener("load", function () {
             <li>Number of Moons: ${planet.moons}</li>
          </ol>
         <img src="${planet.image}">`
-         //event.preventDefault();
       });
-
-
    });
 
    faultyItems.style.visibility = "hidden";
@@ -83,29 +80,20 @@ window.addEventListener("load", function () {
       copilotStatus.innerHTML = `Co-pilot ${copilotName} is ready for launch.`
 
       let launchStatus = document.getElementById("launchStatus");
+      launchStatus.innerHTML = "Shuttle Not Ready For Launch";
+      launchStatus.style.color = "red";
 
-      if (fuelLevel < 10000 && cargoMass <= 10000) {
-         launchStatus.innerHTML = "Shuttle Not Ready For Launch";
-         launchStatus.style.color = "red";
+      if (fuelLevel < 10000) {
          fuelStatus.innerHTML = "Fuel level is too low for launch."
-         //console.log(fuelStatus.innerHTML)
-         //event.preventDefault();
-      } else if (fuelLevel < 10000 && cargoMass > 10000) {
-         fuelStatus.innerHTML = "Fuel level is too low for launch.";
+      }
+      if (cargoMass > 10000) {
          cargoStatus.innerHTML = "Cargo Mass is too high for launch.";
-         launchStatus.innerHTML = "Shuttle Not Ready For Launch";
-         launchStatus.style.color = "red";
-      } else if (fuelLevel >= 10000 && cargoMass > 10000) {
-         cargoStatus.innerHTML = "Cargo Mass is too high for launch."
-         launchStatus.innerHTML = "Shuttle Not Ready For Launch";
-         launchStatus.style.color = "red";
-      } else {
+      } else if (fuelLevel >= 10000 && cargoMass <= 10000) {
          fuelStatus.innerHTML = "Fuel level is high enough for launch.";
          cargoStatus.innerHTML = "Cargo Mass is low enough for launch."
          launchStatus.innerHTML = "Shuttle is Ready For Launch!!";
          launchStatus.style.color = "green";
       }
-      //event.preventDefault();
    });
 
 });
